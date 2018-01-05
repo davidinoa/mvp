@@ -5,18 +5,29 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Flashcard from './components/Flashcard.jsx';
 import NavBar from './components/NavBar.jsx';
 
-const App = () => (
-  <div>
-    <NavBar />
-    <Grid>
-      <Col xs={8} xsOffset={2}>
-        <MuiThemeProvider>
-          <Flashcard />
-        </MuiThemeProvider>
-      </Col>
-    </Grid>
-  </div>
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      flashcards: []
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <Grid>
+          <Col xs={8} xsOffset={2}>
+            <MuiThemeProvider>
+              <Flashcard />
+            </MuiThemeProvider>
+          </Col>
+        </Grid>
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
