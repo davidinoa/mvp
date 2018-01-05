@@ -37,6 +37,18 @@ class App extends React.Component {
     }
   }
 
+  getPreviousCard() {
+    if (this.state.currentCardIndex === 0) {
+      this.setState({ 
+        currentCardIndex: this.state.flashcards.length - 1
+      });
+    } else {
+      this.setState({ 
+        currentCardIndex: this.state.currentCardIndex - 1
+      });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -47,6 +59,7 @@ class App extends React.Component {
               <Flashcard 
                 flashcard={this.state.flashcards[this.state.currentCardIndex]}
                 getNextCard={this.getNextCard.bind(this)}
+                getPreviousCard={this.getPreviousCard.bind(this)}
               />
             </MuiThemeProvider>
           </Col>
