@@ -21,8 +21,20 @@ class App extends React.Component {
           answer: 'Pseudoclassical'
         }
       ],
-      currentFlashcard: 0
+      currentCardIndex: 0
     };
+  }
+
+  getNextCard() {
+    if (this.state.currentCardIndex === (this.state.flashcards.length - 1)) {
+      this.setState({ 
+        currentCardIndex: 0
+      });
+    } else {
+      this.setState({ 
+        currentCardIndex: this.state.currentCardIndex + 1
+      });
+    }
   }
 
   render() {
@@ -33,7 +45,8 @@ class App extends React.Component {
           <Col xs={8} xsOffset={2}>
             <MuiThemeProvider>
               <Flashcard 
-                flashcard={this.state.flashcards[this.state.currentFlashcard]}
+                flashcard={this.state.flashcards[this.state.currentCardIndex]}
+                getNextCard={this.getNextCard.bind(this)}
               />
             </MuiThemeProvider>
           </Col>
