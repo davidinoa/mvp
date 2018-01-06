@@ -38,4 +38,14 @@ var save = function(flashcards) {
   }); 
 };
 
+var retrieveAll = function(callback) {
+  Flashcard.find({}, function(err, flashcards) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, flashcards);
+    }
+  });
+};
+
 module.exports.save = save;
