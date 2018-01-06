@@ -58,6 +58,15 @@ class App extends React.Component {
     }
   }
 
+  deleteCurrentCard() {
+    const currentCard = this.state.flashcards[this.state.currentCardIndex];
+    $.ajax({
+      url: '/flashcards',
+      method: 'DELETE',
+      data: currentCard
+    });
+  }
+
   handleTopicSelection(topic) {
     $.get('/flashcards', (data) => {
       this.setState({
@@ -88,6 +97,7 @@ class App extends React.Component {
                   totalCards={this.state.flashcards.length}
                   getNextCard={this.getNextCard.bind(this)}
                   getPreviousCard={this.getPreviousCard.bind(this)}
+                  deleteCurrentCard={this.deleteCurrentCard.bind(this)}
                 />
               </MuiThemeProvider>
             </Col>
