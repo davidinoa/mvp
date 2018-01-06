@@ -24,7 +24,11 @@ app.post('/flashcards', function(req, res) {
     answer: req.body.answer,
     hint: req.body.hint,
   };
-  res.status(201).redirect('/');
+  
+  saveToMongo([newFlashcard])
+    .then(function() {
+      res.status(201).redirect('/');
+    });
 });
 
 app.listen(3000, function() {
