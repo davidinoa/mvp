@@ -27,6 +27,7 @@ class App extends React.Component {
       this.setState({
         flashcards: data,
         currentCardIndex: 0,
+        currentTopic: ''
       });
     })
       .done(() => {
@@ -68,10 +69,7 @@ class App extends React.Component {
     $.ajax({
       url: '/flashcards',
       method: 'DELETE',
-      data: currentCard,
-      success: function(data) {
-        console.log(data);
-      }
+      data: currentCard
     })
       .done(() => {
         this.fetchAllCards();
