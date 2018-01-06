@@ -48,5 +48,16 @@ var retrieveAll = function(callback) {
   });
 };
 
+var retrieveByTopic = function(topic, callback) {
+  Flashcard.find({topic: topic}, function(err, flashcards) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, flashcards);
+    }
+  }); 
+};
+
 module.exports.save = save;
 module.exports.retrieveAll = retrieveAll;
+module.exports.retrieveByTopic = retrieveByTopic;
