@@ -5,6 +5,8 @@ var app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var testData = [
   {
@@ -21,6 +23,17 @@ var testData = [
 
 app.get('/flashcards', function(req, res) {
   res.json(testData);
+});
+
+app.post('/flashcards', function(req, res) {
+  var newFlashcard = {
+    topic: req.body.topic,
+    question: req.body.question,
+    answer: req.body.answer,
+    hint: req.body.hint,
+  };
+  testData.push(newFlashcard);
+  res.status(201).redirect('/');
 });
 
 app.listen(3000, function() {
