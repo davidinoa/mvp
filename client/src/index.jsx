@@ -27,7 +27,9 @@ class App extends React.Component {
     })
       .done(() => {
         this.setState({
-          topics: this.state.flashcards.map(flashcard => flashcard.topic)
+          topics: Array.from(
+            new Set(this.state.flashcards.map(flashcard => flashcard.topic))
+          )
         });
       });
   }
