@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var saveToMongo = require('../database/index').save;
+var retrieveAllFromMongo = require('../database/index').retrieveAll;
 
 var app = express();
 
@@ -8,21 +10,11 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var testData = [
-  {
-    question: 'How would you set an environment variable X to the value 11 in your terminal?',
-    hint: '',
-    answer: 'export X=11'
-  },
-  {
-    question: 'What Javascript instantiation pattern uses the keyword "new"?',
-    hint: 'Is the most used pattern',
-    answer: 'Pseudoclassical'
-  }
-];
-
 app.get('/flashcards', function(req, res) {
-  res.json(testData);
+  retrieveAllFromMongo(function(err, flashcards) {
+    if (err) { return console.error(err); }
+    res.send(flashcards);
+  });
 });
 
 app.post('/flashcards', function(req, res) {
@@ -32,7 +24,6 @@ app.post('/flashcards', function(req, res) {
     answer: req.body.answer,
     hint: req.body.hint,
   };
-  testData.push(newFlashcard);
   res.status(201).redirect('/');
 });
 

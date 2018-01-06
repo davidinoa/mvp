@@ -49,3 +49,4 @@ var retrieveAll = function(callback) {
 };
 
 module.exports.save = save;
+module.exports.retrieveAll = retrieveAll;
