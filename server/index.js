@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var saveToMongo = require('../database/index').save;
+var removeFromMongo = require('../database/index').remove;
 var retrieveAllFromMongo = require('../database/index').retrieveAll;
 
 var app = express();
@@ -29,6 +30,12 @@ app.post('/flashcards', function(req, res) {
     .then(function() {
       res.status(201).redirect('/');
     });
+});
+
+app.delete('/flashcards', function(req, res) {
+  removeFromMongo(req.body.question, function() {
+    res.send({cardDeleted: req.body});
+  });
 });
 
 app.listen(3000, function() {

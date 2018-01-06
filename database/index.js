@@ -58,6 +58,14 @@ var retrieveByTopic = function(topic, callback) {
   }); 
 };
 
+var remove = function(question, callback) {
+  Flashcard.remove({question: question}, function(err) {
+    if (err) { return console.err(err); }
+    callback();
+  });
+};
+
 module.exports.save = save;
+module.exports.remove = remove;
 module.exports.retrieveAll = retrieveAll;
 module.exports.retrieveByTopic = retrieveByTopic;
