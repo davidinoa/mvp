@@ -1,20 +1,24 @@
 import React from 'react';
-import { Navbar, NavItem, Nav} from 'react-bootstrap';
+import { Navbar, NavItem, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 
-const NavBar = () => (
+const NavBar = ({flashcards}) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#home">Flashcard-Maker</a>
+        <a href="/">Flashcard-Maker</a>
       </Navbar.Brand>
     </Navbar.Header>
-    <Nav>
-      <NavItem eventKey={1} href="#">
-        Create
-      </NavItem>
-      <NavItem eventKey={2} href="#">
-        My Flashcards
-      </NavItem>
+    <Nav pullRight>
+      <NavDropdown eventKey={2} title="My Flashcards" id="nav-dropdown">
+        {flashcards.map((flashcard, index) => (
+          <MenuItem 
+            key={index} 
+            onClick={() => console.log('I got click')}
+          >
+            {flashcard.topic}
+          </MenuItem>
+        ))}
+      </NavDropdown>
     </Nav>
   </Navbar>
 );

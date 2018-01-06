@@ -52,10 +52,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar flashcards={this.state.flashcards}/>
         <Grid>
           <Row>
-            <Col xs={8} xsOffset={2}>
+            <Col xs={6} xsOffset={3}>
               <MuiThemeProvider>
                 <Flashcard 
                   flashcard={this.state.flashcards[this.state.currentCardIndex]}
