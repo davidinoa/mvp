@@ -27,13 +27,6 @@ const CreateForm = () => (
           placeholder="Answer" 
           name="answer"/>
       </div>
-      <div className="form-group">
-        <input 
-          type="text" 
-          className="form-control" 
-          placeholder="Hint" 
-          name="hint"/>
-      </div>
       <button type="submit" className="btn btn-primary">Create</button>
     </form>
   </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 
-const NavBar = ({flashcards}) => (
+const NavBar = ({topics, handleTopicSelection}) => (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
@@ -10,12 +10,12 @@ const NavBar = ({flashcards}) => (
     </Navbar.Header>
     <Nav pullRight>
       <NavDropdown eventKey={2} title="My Flashcards" id="nav-dropdown">
-        {flashcards.map((flashcard, index) => (
+        {topics.map((topic, index) => (
           <MenuItem 
-            key={index} 
-            onClick={() => console.log('I got click')}
+            key={index}
+            onClick={() => handleTopicSelection(topic)}
           >
-            {flashcard.topic}
+            {topic}
           </MenuItem>
         ))}
       </NavDropdown>

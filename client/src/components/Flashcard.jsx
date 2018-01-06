@@ -2,11 +2,11 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const Flashcard = ({flashcard, getNextCard, getPreviousCard}) => (
+const Flashcard = ({flashcard, getNextCard, getPreviousCard, currentCardIndex, totalCards}) => (
   <Card>
     <CardHeader
       title={flashcard.question}
-      subtitle={flashcard.hint}
+      subtitle={`${currentCardIndex + 1} of ${totalCards}`}
       actAsExpander={true}
       showExpandableButton={true}
     />
