@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Grid, Col} from 'react-bootstrap';
@@ -9,20 +10,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      flashcards: [
-        {
-          question: 'How would you set an environment variable X to the value 11 in your terminal?',
-          hint: '',
-          answer: 'export X=11'
-        },
-        {
-          question: 'What Javascript instantiation pattern uses the keyword "new"?',
-          hint: 'Is the most used pattern',
-          answer: 'Pseudoclassical'
-        }
-      ],
+      flashcards: [{}],
       currentCardIndex: 0
     };
+  }
+
+  componentDidMount() {
+    $.get('/flashcards', (data) => {
+      this.setState({
+        flashcards: data,
+        currentCardIndex: 0
+      });
+    });
   }
 
   getNextCard() {
