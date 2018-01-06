@@ -20,7 +20,22 @@ var flashcardSchema = mongoose.Schema({
 
 var Flashcard = mongoose.model('Flashcard', flashcardSchema);
 
-var save = function() {
+var save = function(flashcards) {
+  return new Promise(function(resolve, reject) {
+    flashcards.forEach(function(flashcard) {
+      new Flashcard({
+        topic: flashcard.topic,
+        question: flashcard.question,
+        answer: flashcard.answer,
+        hint: flashcard.hint
+      })
+        .save(function(err) {
+          if (err) { reject(err); }
+          console.log('Document created');
+        });
+      resolve();
+    }); 
+  }); 
 };
 
 module.exports.save = save;
