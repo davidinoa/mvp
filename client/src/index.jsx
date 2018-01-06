@@ -19,6 +19,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchAllCards();
+  }
+
+  fetchAllCards() {
     $.get('/flashcards', (data) => {
       this.setState({
         flashcards: data,
@@ -60,11 +64,18 @@ class App extends React.Component {
 
   deleteCurrentCard() {
     const currentCard = this.state.flashcards[this.state.currentCardIndex];
+    
     $.ajax({
       url: '/flashcards',
       method: 'DELETE',
-      data: currentCard
-    });
+      data: currentCard,
+      success: function(data) {
+        console.log(data);
+      }
+    })
+      .done(() => {
+        this.fetchAllCards();
+      });
   }
 
   handleTopicSelection(topic) {

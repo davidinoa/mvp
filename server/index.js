@@ -34,7 +34,10 @@ app.post('/flashcards', function(req, res) {
 
 app.delete('/flashcards', function(req, res) {
   removeFromMongo(req.body.question, function() {
-    res.send({cardDeleted: req.body});
+    retrieveAllFromMongo(function(err, flashcards) {
+      if (err) { return console.error(err); }
+      res.send(flashcards);
+    });
   });
 });
 
