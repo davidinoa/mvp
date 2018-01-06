@@ -7,11 +7,14 @@ const Flashcard = ({flashcard, getNextCard, getPreviousCard, currentCardIndex, t
   <Card>
     <CardHeader
       title={flashcard.question}
+      titleStyle={{fontSize: '32px'}}
       subtitle={`${currentCardIndex + 1} of ${totalCards}`}
-      actAsExpander={true}
       showExpandableButton={true}
     />
-    <CardText expandable={true}>
+    <CardText 
+      expandable={true}
+      textStyle={{fontSize: '24px'}}
+    >
       {flashcard.answer}
     </CardText>
     <CardActions disable='true'>

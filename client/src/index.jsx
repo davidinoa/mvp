@@ -65,15 +65,16 @@ class App extends React.Component {
 
   deleteCurrentCard() {
     const currentCard = this.state.flashcards[this.state.currentCardIndex];
-    
-    $.ajax({
-      url: '/flashcards',
-      method: 'DELETE',
-      data: currentCard
-    })
-      .done(() => {
-        this.fetchAllCards();
-      });
+    if (confirm('Are you sure you want to delete this flashcard?')) {
+      $.ajax({
+        url: '/flashcards',
+        method: 'DELETE',
+        data: currentCard
+      })
+        .done(() => {
+          this.fetchAllCards();
+        });
+    }
   }
 
   handleTopicSelection(topic) {
@@ -90,17 +91,42 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{backgroundImage: 'url("https://i.imgur.com/CRbHYjg.png")'}}>
         <NavBar 
           topics={this.state.topics}
           handleTopicSelection={this.handleTopicSelection.bind(this)}
         />
+        <div 
+          id="home"
+          className="jumbotron jumbotron-fluid"
+          style={{
+            height: 'calc(90vh)',
+            marginBottom: '100px',
+            backgroundImage: 'url("https://static.pexels.com/photos/416346/pexels-photo-416346.jpeg")',
+            backgroundSize: 'cover'
+          }}
+        >
+          <div className="container">
+            <h1 
+              className="display-4" 
+              style={{marginTop: '200px', marginLeft: '120px' }}
+            >
+              Flashcard-Maker
+            </h1>
+            <h2 
+              className="lead" 
+              style={{fontSize: '30px', marginLeft: '120px'}}
+            >
+              Create your own flashcards!
+            </h2>
+          </div>
+        </div>
         <Grid>
-          <Row>
-            <Col xs={6} xsOffset={3}>
-              <h3><Label>{this.state.currentTopic}</Label></h3>{' '}
+          <Row id="study" style={{height: 'calc(90vh)'}}>
+            <Col xs={10} xsOffset={1} style={{marginTop: '100px'}}>
+              <h2><Label>{this.state.currentTopic}</Label></h2>{' '}
               <MuiThemeProvider>
-                <Flashcard 
+                <Flashcard
                   flashcard={this.state.flashcards[this.state.currentCardIndex]}
                   currentCardIndex={this.state.currentCardIndex}
                   totalCards={this.state.flashcards.length}
@@ -111,7 +137,7 @@ class App extends React.Component {
               </MuiThemeProvider>
             </Col>
           </Row>
-          <Row>
+          <Row id="create-form" style={{height: 'calc(90vh)'}}>
             <Col xs={8} xsOffset={0}>
               <CreateForm />
             </Col>
