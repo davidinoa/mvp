@@ -103,25 +103,27 @@ class App extends React.Component {
             height: 'calc(90vh)',
             marginBottom: '100px',
             backgroundImage: 'url("https://static.pexels.com/photos/416346/pexels-photo-416346.jpeg")',
-            backgroundSize: 'cover'
+            backgroundSize: 'cover',
+            fontFamily: 'Mission Script'
           }}
         >
           <div className="container">
             <h1 
               className="display-4" 
-              style={{marginTop: '200px', marginLeft: '120px' }}
+              style={{marginTop: '200px', marginLeft: '120px', fontSize: '7em'}}
             >
               Flashcard-Maker
             </h1>
             <h2 
               className="lead" 
-              style={{fontSize: '30px', marginLeft: '120px'}}
+              style={{fontSize: '3em', marginLeft: '120px'}}
             >
               Create your own flashcards!
             </h2>
           </div>
         </div>
         <Grid>
+          <hr />
           <Row id="study" style={{height: 'calc(90vh)'}}>
             <Col xs={10} xsOffset={1} style={{marginTop: '100px'}}>
               <h2><Label>{this.state.currentTopic}</Label></h2>{' '}
@@ -137,6 +139,7 @@ class App extends React.Component {
               </MuiThemeProvider>
             </Col>
           </Row>
+          <hr />
           <Row id="create-form" style={{height: 'calc(90vh)'}}>
             <Col xs={8} xsOffset={0}>
               <CreateForm />
