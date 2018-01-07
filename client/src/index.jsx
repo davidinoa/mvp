@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Grid, Col, Row, Label} from 'react-bootstrap';
+import {Grid, Col, Row, Label, Button, ButtonToolbar} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CreateForm from './components/CreateForm.jsx';
 import Flashcard from './components/Flashcard.jsx';
@@ -95,6 +95,7 @@ class App extends React.Component {
         <NavBar 
           topics={this.state.topics}
           handleTopicSelection={this.handleTopicSelection.bind(this)}
+          fetchAllCards={this.fetchAllCards.bind(this)}
         />
         <div 
           id="home"
@@ -104,22 +105,43 @@ class App extends React.Component {
             marginBottom: '100px',
             backgroundImage: 'url("https://static.pexels.com/photos/416346/pexels-photo-416346.jpeg")',
             backgroundSize: 'cover',
-            fontFamily: 'Mission Script'
           }}
         >
           <div className="container">
             <h1 
               className="display-4" 
-              style={{marginTop: '200px', marginLeft: '120px', fontSize: '7em'}}
+              style={{
+                marginTop: '200px',
+                marginLeft: '120px',
+                fontSize: '7em',
+                fontFamily: 'Mission Script'
+              }}
             >
               Flashcard-Maker
             </h1>
             <h2 
               className="lead" 
-              style={{fontSize: '3em', marginLeft: '120px'}}
+              style={{
+                fontSize: '3em',
+                marginLeft: '120px',
+                fontFamily: 'Mission Script'
+              }}
             >
               Create your own flashcards!
             </h2>
+            <ButtonToolbar>
+              <Button 
+                bsStyle="primary"
+                bsSize="large"
+                href='#create-form'
+                style={{marginLeft: '120px'}}
+              >
+                Create
+              </Button>
+              <Button bsStyle="primary" bsSize="large" href='#study'>
+                Study
+              </Button>
+            </ButtonToolbar>
           </div>
         </div>
         <Grid>

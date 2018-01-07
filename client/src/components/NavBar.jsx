@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, NavItem, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 
-const NavBar = ({topics, handleTopicSelection}) => (
+const NavBar = ({topics, handleTopicSelection, fetchAllCards}) => (
   <Navbar inverse fixedTop={true} style={{marginBottom: '1'}}>
     <Navbar.Header>
       <Navbar.Brand>
@@ -16,10 +16,11 @@ const NavBar = ({topics, handleTopicSelection}) => (
         Create
       </NavItem>
       <NavDropdown eventKey={3} title="My Flashcards" id="nav-dropdown">
-        <MenuItem>All</MenuItem>
+        <MenuItem onClick={fetchAllCards}>All</MenuItem>
         {topics.map((topic, index) => (
           <MenuItem 
             key={index}
+            href="#study"
             onClick={() => handleTopicSelection(topic)}
           >
             {topic}
