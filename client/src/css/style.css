@@ -1,0 +1,10 @@
+.guest-list {
+  width: 100%;
+  min-height: calc(40vh);
+  margin: 2em auto 0;
+  padding: 1.5em;
+  background: #fff;
+  border-radius: .5em;
+  box-shadow: 0 2px 0 rgba(0,0,0,.1);
+  overflow: hidden;
+}

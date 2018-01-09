@@ -28,7 +28,7 @@ app.post('/flashcards', function(req, res) {
   
   saveToMongo([newFlashcard])
     .then(function() {
-      res.status(201).redirect('/');
+      res.status(201).redirect('/#create-form');
     });
 });
 

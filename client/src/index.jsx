@@ -14,7 +14,7 @@ class App extends React.Component {
       flashcards: [{}],
       currentCardIndex: 0,
       topics: [],
-      currentTopic: '', 
+      currentTopic: '',
     };
   }
 
@@ -27,14 +27,12 @@ class App extends React.Component {
       this.setState({
         flashcards: data,
         currentCardIndex: 0,
-        currentTopic: ''
+        currentTopic: '',
       });
     })
       .done(() => {
         this.setState({
-          topics: Array.from(
-            new Set(this.state.flashcards.map(flashcard => flashcard.topic))
-          )
+          topics: Array.from(new Set(this.state.flashcards.map(flashcard => flashcard.topic))),
         });
       });
   }
@@ -146,8 +144,8 @@ class App extends React.Component {
         </div>
         <Grid>
           <hr />
-          <Row id="study" style={{height: 'calc(90vh)'}}>
-            <Col xs={10} xsOffset={1} style={{marginTop: '100px'}}>
+          <Row id="study" style={{height: 'calc(85vh)'}}>
+            <Col xs={8} xsOffset={2} style={{marginTop: '100px'}}>
               <h2><Label>{this.state.currentTopic}</Label></h2>{' '}
               <MuiThemeProvider>
                 <Flashcard
@@ -162,7 +160,7 @@ class App extends React.Component {
             </Col>
           </Row>
           <hr />
-          <Row id="create-form" style={{height: 'calc(90vh)'}}>
+          <Row id="create-form" style={{height: 'calc(75vh)'}}>
             <Col xs={8} xsOffset={0}>
               <CreateForm />
             </Col>
